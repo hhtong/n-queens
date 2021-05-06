@@ -1,15 +1,18 @@
 version: 2.1
 
 orbs:
-  dwave: dwave/orb-examples@2
+  dwave: dwave/orb-examples@dev:dev
 
 workflows:
   version: 2.1
   tests:
     jobs:
-      - dwave/test-linux
-      - dwave/test-osx
-      - dwave/test-win
+      # - dwave/test-linux:
+      #     skip-int-tests: true
+      # - dwave/test-osx:
+      #     skip-int-tests: true
+      - dwave/test-win:
+          skip-int-tests: true
 
   weekly:
     triggers:
@@ -21,6 +24,9 @@ workflows:
                 - master
                 - main
     jobs:
-      - dwave/test-linux
-      - dwave/test-osx
-      - dwave/test-win
+      - dwave/test-linux:
+          skip-int-tests: true
+      - dwave/test-osx:
+          skip-int-tests: true
+      - dwave/test-win:
+          skip-int-tests: true
